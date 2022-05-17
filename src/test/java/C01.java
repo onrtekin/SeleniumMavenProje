@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -36,26 +37,38 @@ public class C01 {
     }
     @Test
     public void test() throws InterruptedException {
-        //1) Bu siteye gidin. ->  http://demoqa.com/text-box
         driver.get("http://demoqa.com/text-box");
-        //2) Full Name kısmına "Automation" girin.
-        WebElement fullName=driver.findElement(By.id("userName"));
-        fullName.sendKeys("Automation");
-        // 3) Email kısmına "Testing" girin.
-        WebElement eMail=driver.findElement(By.id("userEmail"));
-        eMail.sendKeys("testing@gmail.com");
-        //4) Current Address kısmına "Testing Current Address" girin.
-        WebElement currentAddress=driver.findElement(By.id("currentAddress"));
-        currentAddress.sendKeys("Testing Current Address");
-        //5) Permanent Address kısmına "Testing Permanent Address" girin.
-        WebElement permanentAddress=driver.findElement(By.id("permanentAddress"));
-        permanentAddress.sendKeys("Testing Permanent Address");
-        Thread.sleep(2000);
-        //6) Submit butonuna tıklayınız.
-        WebElement submit=driver.findElement(By.id("submit"));
-        submit.click();
-        Thread.sleep(2000);
 
+        Thread.sleep(1000);
+
+        WebElement fullName = driver.findElement(By.id("userName"));
+        fullName.sendKeys("Automation");
+
+        WebElement email = driver.findElement(By.id("userEmail"));
+        email.sendKeys("name@example.com");
+
+        WebElement cAddress = driver.findElement(By.id("currentAddress"));
+        cAddress.sendKeys("Testing Current Address");
+
+        WebElement pAddress = driver.findElement(By.id("permanentAddress"));
+        pAddress.sendKeys("Testing Permanent Address");
+
+        Thread.sleep(1000);
+
+        WebElement submitButton = driver.findElement(By.id("submit"));
+        submitButton.click();
+        Thread.sleep(1000);
+
+        WebElement name2 = driver.findElement(By.id("name"));
+        String name2txt = name2.getText();
+
+        WebElement email2 = driver.findElement(By.id("email"));
+        String email2txt = email2.getText();
+
+
+        Assert.assertEquals("Name:Automation", name2txt);
+        Assert.assertEquals("Email:name@example.com", email2txt);
+        driver.quit();
 
     }
 
