@@ -45,10 +45,6 @@ public class C02 {
 
         Assert.assertEquals(expectedUrl, driver.getCurrentUrl());
 
-
-
-
-
         driver.findElement(By.xpath("//*[text()=' Signup / Login']")).click();
         driver.findElement(By.xpath("//input[@data-qa='login-email']")).sendKeys("omerfaiktekin@gmail.com");
         driver.findElement(By.xpath("//input[@data-qa='login-password']")).sendKeys("2017");
