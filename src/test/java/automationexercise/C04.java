@@ -12,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class C02 {
+public class C04 {
     /*
     1. Launch browser
 2. Navigate to url 'http://automationexercise.com'
@@ -22,8 +22,8 @@ public class C02 {
 6. Enter correct email address and password
 7. Click 'login' button
 8. Verify that 'Logged in as username' is visible
-9. Click 'Delete Account' button
-10. Verify that 'ACCOUNT DELETED!' is visible
+9. Click 'Logout' button
+10. Verify that user is navigated to login page
      */
     WebDriver driver;
     @Before
@@ -33,38 +33,28 @@ public class C02 {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
-    @After
-    public void tearDown() {
-        driver.quit();
-
-    }
     @Test
-    public void test(){
-        driver.get("https://automationexercise.com");
+    public void test() {
+        driver.get("http://automationexercise.com");
         WebElement homePage=driver.findElement(By.xpath("//html[@lang='en']"));
         Assert.assertTrue(homePage.isDisplayed());
-
-        driver.findElement(By.xpath("//*[text()=' Signup / Login']")).click();
-        driver.findElement(By.xpath("//input[@data-qa='login-email']")).sendKeys("omerfaiktekin@gmail.com");
+        driver.findElement(By.xpath(" //*[text()=' Signup / Login']")).click();
+        WebElement loginYtA=driver.findElement(By.xpath("//*[text()='Login to your account']"));
+        Assert.assertTrue(loginYtA.isDisplayed());
+        driver.findElement(By.xpath("//input[@data-qa='login-email']")).sendKeys("omerfaikteki@gmail.com");
         driver.findElement(By.xpath("//input[@data-qa='login-password']")).sendKeys("2017");
         driver.findElement(By.xpath("//button[@data-qa='login-button']")).click();
-        WebElement logged=driver.findElement(By.xpath(" //*[text()=' Logged in as ']"));
-        Assert.assertTrue(logged.isDisplayed());
-        driver.findElement(By.xpath("(//a[@style='color:brown;'])[2]")).click();
-        WebElement delete=driver.findElement(By.xpath("(//*[text()='Delete Account'])[2]"));
-        Assert.assertTrue(delete.isDisplayed());
-
-
-
+        WebElement loggedUserName=driver.findElement(By.xpath("//*[text()=' Logged in as ']"));
+        Assert.assertTrue(loggedUserName.isDisplayed());
+        driver.findElement(By.xpath("//a[@style='color:brown;']")).click();
+        WebElement login=driver.findElement(By.xpath("//*[text()='Login to your account']"));
+        Assert.assertTrue(login.isDisplayed());
 
     }
+    @After
+    public void tearDown() {
+        driver.close();
 
-
-
-
-
-
-
-
+    }
 
 }

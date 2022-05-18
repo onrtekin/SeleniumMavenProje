@@ -52,15 +52,14 @@ public class C01 {
     @Test
     public void test(){
         driver.get("http://automationexercise.com");
-        String entrance=driver.getTitle();
-        String pageEntrance="Automation Exercise";
-        Assert.assertEquals(pageEntrance,entrance);
+        WebElement homePage=driver.findElement(By.xpath("//html[@lang='en']"));
+        Assert.assertTrue(homePage.isDisplayed());
         driver.findElement(By.xpath("//a[@href='/login']")).click();
         String actualNewUserWrite=driver.findElement(By.xpath("(//h2)[3]")).getText();
         String expectedWrite="New User Signup!";
         Assert.assertEquals(expectedWrite,actualNewUserWrite);
         driver.findElement(By.xpath("//input[@data-qa='signup-name']")).sendKeys("omer");
-        driver.findElement(By.xpath("(//input[@type='email'])[2]")).sendKeys("omerfaiktekin@gmail.com");
+        driver.findElement(By.xpath("(//input[@type='email'])[2]")).sendKeys("omerfaikteki@gmail.com");
         driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
         WebElement eai=driver.findElement(By.xpath("//*[text()='Enter Account Information']"));
         Assert.assertTrue(eai.isDisplayed());

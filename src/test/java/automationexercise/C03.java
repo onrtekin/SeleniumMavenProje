@@ -33,15 +33,14 @@ public class C03 {
     }
     @After
     public void tearDown() {
-       driver.close();
+      driver.close();
 
     }
     @Test
     public void test(){
         driver.get("http://automationexercise.com");
-       String actualHomepage=driver.getTitle();
-       String expectedHomepage="Automation Exercise";
-        Assert.assertEquals(expectedHomepage,actualHomepage);
+      WebElement homePage=driver.findElement(By.xpath("//html[@lang='en']"));
+      Assert.assertTrue(homePage.isDisplayed());
         driver.findElement(By.xpath(" //*[text()=' Signup / Login']")).click();
         WebElement login=driver.findElement(By.xpath("//*[text()='Login to your account']"));
         Assert.assertTrue(login.isDisplayed());
