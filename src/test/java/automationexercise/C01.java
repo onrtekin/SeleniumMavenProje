@@ -46,7 +46,7 @@ public class C01 {
     }
     @After
     public void tearDown() {
-        //driver.quit();
+      driver.quit();
 
     }
     @Test
