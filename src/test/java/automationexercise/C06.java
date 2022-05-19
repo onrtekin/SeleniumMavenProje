@@ -1,6 +1,7 @@
 package automationexercise;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +20,11 @@ public class C06 {
         driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+
+    }
+    @After
+    public void tearDown() {
+        driver.close();
 
     }
     @Test
@@ -54,8 +60,6 @@ public class C06 {
         String homeP=driver.getCurrentUrl();
         String expectedHomeP="https://automationexercise.com/";
         Assert.assertEquals(expectedHomeP,homeP);
-
-
 
 
     }
