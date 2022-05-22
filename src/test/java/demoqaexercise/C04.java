@@ -31,7 +31,10 @@ public class C04 {
             driver.findElement(By.xpath("(//div[@class='tab-content style-scope tp-yt-paper-tab'])[2]")).click();
             Thread.sleep(2000);
 
+
             Actions actions=new Actions(driver);
+
+
 
             for (int j = 0; j < count; j++) {
                 actions.sendKeys(Keys.TAB).perform();
